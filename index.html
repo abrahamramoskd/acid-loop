@@ -1,0 +1,188 @@
+<div id="app">
+	<h1>⚡ ACID LOOP ⚡</h1>
+	<div id="transport">
+		<button id="playBtn">▶ PLAY</button>
+		<div id="bpmGroup">
+			<label>BPM</label>
+			<input type="range" id="bpmRange" min="60" max="180" value="130">
+			<input type="number" id="bpmNum" min="60" max="180" value="130">
+		</div>
+	</div>
+	<div id="visualContainer">
+		<svg id="ringsSvg" viewBox="0 0 360 360"></svg>
+	</div>
+	<div id="controls">
+		<div class="track-row header">
+			<span></span><span>N</span><span></span><span>M</span><span></span><span>OFF</span><span></span>
+		</div>
+	</div>
+
+	<template id="track-row-tpl">
+		<div class="track-row">
+			<span class="label"></span>
+			<input type="range" min="1" data-param="n">
+			<input type="number" min="1" data-param="n">
+			<input type="range" min="4" max="32" data-param="m">
+			<input type="number" min="4" max="32" data-param="m">
+			<input type="range" min="0" data-param="off">
+			<input type="number" min="0" data-param="off">
+		</div>
+	</template>
+	<div id="knobs303">
+		<div class="knob-group" data-lfo="rand">
+			<label>RANDOM</label>
+			<input type="range" id="k303rand" min="0" max="100" value="10">
+			<div class="knob-row">
+				<input type="number" id="k303randN" min="0" max="100" value="10">
+				<select class="lfo-wave">
+					<option value="off">—</option>
+					<option value="sin">SIN</option>
+					<option value="tri">TRI</option>
+					<option value="saw">SAW</option>
+					<option value="squ">SQU</option>
+					<option value="rnd">RND</option>
+				</select>
+				<select class="lfo-dur">
+					<option value="4">4</option>
+					<option value="8">8</option>
+					<option value="12">12</option>
+					<option value="16" selected>16</option>
+					<option value="24">24</option>
+					<option value="32">32</option>
+					<option value="48">48</option>
+					<option value="64">64</option>
+					<option value="128">128</option>
+					<option value="256">256</option>
+				</select>
+			</div>
+		</div>
+		<div class="knob-group" data-lfo="reso">
+			<label>RESONANCE</label>
+			<input type="range" id="k303reso" min="0" max="100" value="30">
+			<div class="knob-row">
+				<input type="number" id="k303resoN" min="0" max="100" value="30">
+				<select class="lfo-wave">
+					<option value="off">—</option>
+					<option value="sin">SIN</option>
+					<option value="tri">TRI</option>
+					<option value="saw">SAW</option>
+					<option value="squ">SQU</option>
+					<option value="rnd">RND</option>
+				</select>
+				<select class="lfo-dur">
+					<option value="4">4</option>
+					<option value="8">8</option>
+					<option value="12">12</option>
+					<option value="16" selected>16</option>
+					<option value="24">24</option>
+					<option value="32">32</option>
+					<option value="48">48</option>
+					<option value="64">64</option>
+					<option value="128">128</option>
+					<option value="256">256</option>
+				</select>
+			</div>
+		</div>
+		<div class="knob-group" data-lfo="cut">
+			<label>CUTOFF</label>
+			<input type="range" id="k303cut" min="0" max="100" value="30">
+			<div class="knob-row">
+				<input type="number" id="k303cutN" min="0" max="100" value="30">
+				<select class="lfo-wave">
+					<option value="off">—</option>
+					<option value="sin">SIN</option>
+					<option value="tri">TRI</option>
+					<option value="saw">SAW</option>
+					<option value="squ">SQU</option>
+					<option value="rnd">RND</option>
+				</select>
+				<select class="lfo-dur">
+					<option value="4">4</option>
+					<option value="8">8</option>
+					<option value="12">12</option>
+					<option value="16" selected>16</option>
+					<option value="24">24</option>
+					<option value="32">32</option>
+					<option value="48">48</option>
+					<option value="64">64</option>
+					<option value="128">128</option>
+					<option value="256">256</option>
+				</select>
+			</div>
+		</div>
+		<div class="knob-group" data-lfo="env">
+			<label>ENV MOD</label>
+			<input type="range" id="k303env" min="0" max="100" value="10">
+			<div class="knob-row">
+				<input type="number" id="k303envN" min="0" max="100" value="10">
+				<select class="lfo-wave">
+					<option value="off">—</option>
+					<option value="sin">SIN</option>
+					<option value="tri">TRI</option>
+					<option value="saw">SAW</option>
+					<option value="squ">SQU</option>
+					<option value="rnd">RND</option>
+				</select>
+				<select class="lfo-dur">
+					<option value="4">4</option>
+					<option value="8">8</option>
+					<option value="12">12</option>
+					<option value="16" selected>16</option>
+					<option value="24">24</option>
+					<option value="32">32</option>
+					<option value="48">48</option>
+					<option value="64">64</option>
+					<option value="128">128</option>
+					<option value="256">256</option>
+				</select>
+			</div>
+		</div>
+		<div class="knob-group" data-lfo="dist">
+			<label>DISTORTION</label>
+			<input type="range" id="k303dist" min="0" max="100" value="25">
+			<div class="knob-row">
+				<input type="number" id="k303distN" min="0" max="100" value="25">
+				<select class="lfo-wave">
+					<option value="off">—</option>
+					<option value="sin">SIN</option>
+					<option value="tri">TRI</option>
+					<option value="saw">SAW</option>
+					<option value="squ">SQU</option>
+					<option value="rnd">RND</option>
+				</select>
+				<select class="lfo-dur">
+					<option value="4">4</option>
+					<option value="8">8</option>
+					<option value="12">12</option>
+					<option value="16" selected>16</option>
+					<option value="24">24</option>
+					<option value="32">32</option>
+					<option value="48">48</option>
+					<option value="64">64</option>
+					<option value="128">128</option>
+					<option value="256">256</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div id="mixer">
+		<span class="mixer-title">MIXER</span>
+	</div>
+
+	<template id="fader-tpl">
+		<div class="fader-group">
+			<label></label>
+			<div class="vslider-wrap"><input type="range" class="vslider" min="0" max="100" value="80"></div>
+			<input type="number" min="0" max="100" value="80">
+			<button class="mute-btn">M</button>
+		</div>
+	</template>
+
+	<template id="fader-master-tpl">
+		<div class="fader-group master">
+			<label>MST</label>
+			<div class="vslider-wrap"><input type="range" class="vslider" min="0" max="100" value="80" data-fader="master"></div>
+			<input type="number" min="0" max="100" value="80" data-fader="master">
+		</div>
+	</template>
+</div>
