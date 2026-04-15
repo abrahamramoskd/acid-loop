@@ -103,7 +103,15 @@ h1 {
 	flex-direction: column;
 	gap: 6px;
 }
-
+#subtitle {
+  font-size: 0.75rem;
+  color: var(--dim);
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+#subtitle span {
+  color: var(--cyan);
+}
 .track-row {
 	display: grid;
 	grid-template-columns: 36px 1fr 32px 1fr 32px 1fr 32px;
